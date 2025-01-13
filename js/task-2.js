@@ -1,18 +1,14 @@
 "use strict";
 
-function makeArray() {
+function makeArray(firstArray, secondArray, maxLength) {
   let arr = [];
+  const limit = typeof maxLength === "number" && maxLength >= 0 ? maxLength : 0;
 
-  const limit =
-    arguments[arguments.length - 1] === Number(arguments[arguments.length - 1])
-      ? arguments[arguments.length - 1]
-      : 0;
-  for (let i = 0; i < arguments.length; i++) {
-    if (Array.isArray(arguments[i])) {
-      arr = arr.concat(arguments[i]);
-    }
+  if (Array.isArray(firstArray) && Array.isArray(secondArray)) {
+    arr = firstArray.concat(secondArray);
   }
-  return limit !== undefined ? arr.slice(0, limit) : arr;
+
+  return arr.slice(0, limit);
 }
 
 console.log(makeArray(["Mango", "Poly"], ["Ajax", "Chelsea"], 3)); // ["Mango", "Poly", "Ajax"]
